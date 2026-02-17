@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bavaria Smalt Orange - Premium Malt Drink</title>
+    <meta name="description"
+        content="Experience the refreshing taste of Bavaria Smalt. Premium non-alcoholic malt drink with a vibrant orange twist. Brewed with natural ingredients.">
+    <meta name="keywords"
+        content="Bavaria, Smalt, Malt Drink, Non-alcoholic, Orange flavor, Premium beverage, Healthy drink">
+    <meta property="og:title" content="Bavaria Smalt Orange - Premium Malt Drink">
+    <meta property="og:description" content="The refreshing fusion of naturally fermented malt and zesty orange.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-logo">BAVARIA</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-logo">BAVARIA</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#product" class="nav-link">Product</a></li>
+            <li><a href="#ingredients" class="nav-link">Ingredients</a></li>
+            <li><a href="#nutrition" class="nav-link">Nutrition</a></li>
+            <li><a href="#reviews" class="nav-link">Reviews</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <!-- Placeholder for WebP Sequence / Canvas -->
+            <canvas id="hero-canvas"></canvas>
+        </div>
+
+        <div class="hero-content">
+            <p class="subtitle reveal-text">Premium Malt Drink</p>
+            <h1 class="hero-title reveal-text">Bavaria</h1>
+            <p class="reveal-text" style="max-width: 600px; opacity: 0.8;">The refreshing fusion of naturally fermented
+                malt and zesty orange. Crafted
+                for those who dare to taste the difference.</p>
+
+            <div class="hero-buttons reveal-text">
+                <a href="#product" class="btn btn-secondary">Discover</a>
+                <a href="#shop" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="section product-showcase" id="product">
+        <div class="container">
+            <div class="grid">
+                <div class="col-6">
+                    <p class="subtitle reveal-text" style="color: var(--color-accent);">The Experience</p>
+                    <h2 class="reveal-text">Unmatched Freshness</h2>
+                    <div class="reveal-text">
+                        <p>Brewed with pure mineral water from our own spring, Bavaria Smalt offers a crisp, clean
+                            taste. The added orange essence brings a vibrant, citrusy kick that awakens your senses.</p>
+                        <br>
+                        <ul style="color: var(--color-text-secondary);">
+                            <li>• 0.0% Alcohol</li>
+                            <li>• Natural Ingredients</li>
+                            <li>• Low Calorie</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-6 reveal-text">
+                    <!-- Product Image Placeholder -->
+                    <div
+                        style="width: 100%; height: 400px; background: rgba(255,255,255,0.05); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                        <span style="opacity: 0.3;">Interactive 3D Can / Parallax Image</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ingredients Section -->
+    <section class="section" id="ingredients" style="background-color: #0a0a0a;">
+        <div class="container">
+            <div class="grid">
+                <div class="col-6 reveal-text">
+                    <!-- Ingredients Visual -->
+                    <div data-parallax-speed="-0.05"
+                        style="width: 100%; height: 400px; background: rgba(255,107,0,0.1); border-radius: 20px; display: flex; align-items: center; justify-content: center; transition: transform 0.1s ease-out;">
+                        <span style="opacity: 0.5; color: var(--color-accent);">Floating Orange Slices & Malt</span>
+                    </div>
+                </div>
+                <div class="col-6" style="display: flex; flex-direction: column; justify-content: center;">
+                    <p class="subtitle reveal-text" style="color: var(--color-accent);">Pure & Simple</p>
+                    <h2 class="reveal-text">Nature's Best</h2>
+                    <p class="reveal-text">We believe in transparency. No artificial colors, no preservatives. Just the
+                        goodness of barley malt, hops, and natural fruit extracts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrition Section -->
+    <section class="section" id="nutrition">
+        <div class="container" style="text-align: center;">
+            <h2 class="reveal-text">Nutritional Values</h2>
+            <div class="reveal-text" style="margin-top: var(--space-md); overflow-x: auto;">
+                <table
+                    style="width: 100%; max-width: 800px; margin: 0 auto; border-collapse: collapse; text-align: left;">
+                    <tr style="border-bottom: 1px solid var(--color-divider);">
+                        <th style="padding: 1rem;">Per 100ml</th>
+                        <th style="padding: 1rem;">Value</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--color-divider);">
+                        <td style="padding: 1rem;">Energy</td>
+                        <td style="padding: 1rem;">28 kcal</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--color-divider);">
+                        <td style="padding: 1rem;">Carbohydrates</td>
+                        <td style="padding: 1rem;">6.5g</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--color-divider);">
+                        <td style="padding: 1rem;">- Sugars</td>
+                        <td style="padding: 1rem;">6.5g</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="section" id="reviews" style="background-color: #0a0a0a;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: var(--space-md);">
+                <p class="subtitle reveal-text" style="color: var(--color-accent);">Community</p>
+                <h2 class="reveal-text">What People Say</h2>
+            </div>
+            <div class="grid">
+                <div class="col-6 reveal-text">
+                    <div
+                        style="padding: 2rem; background: rgba(255,255,255,0.03); border-left: 2px solid var(--color-accent); border-radius: 0 10px 10px 0;">
+                        <p style="font-size: 1.1rem; margin-bottom: 1rem;">"Absolutely refreshing! The malt gives it a
+                            depth that soda just doesn't have, and the orange is perfectly balanced."</p>
+                        <p style="opacity: 0.6; font-size: 0.9rem;">— Sarah M.</p>
+                    </div>
+                </div>
+                <div class="col-6 reveal-text">
+                    <div
+                        style="padding: 2rem; background: rgba(255,255,255,0.03); border-left: 2px solid var(--color-accent); border-radius: 0 10px 10px 0;">
+                        <p style="font-size: 1.1rem; margin-bottom: 1rem;">"My go-to drink after a workout. Hydrating
+                            without being overly sweet. Love the new design too!"</p>
+                        <p style="opacity: 0.6; font-size: 0.9rem;">— David K.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
+        <div class="container" style="max-width: 800px;">
+            <div style="text-align: center; margin-bottom: var(--space-md);">
+                <p class="subtitle reveal-text" style="color: var(--color-accent);">Common Questions</p>
+                <h2 class="reveal-text">FAQ</h2>
+            </div>
+
+            <div class="faq-item reveal-text" style="border-bottom: 1px solid var(--color-divider); padding: 1.5rem 0;">
+                <h3 style="cursor: pointer; font-size: 1.2rem; display: flex; justify-content: space-between;">Is
+                    Bavaria Smalt alcoholic? <span>+</span></h3>
+                <p style="margin-top: 0.5rem; opacity: 0.7;">No, Bavaria Smalt is 100% non-alcoholic (0.0%), making it
+                    perfect for any time of the day.</p>
+            </div>
+            <div class="faq-item reveal-text" style="border-bottom: 1px solid var(--color-divider); padding: 1.5rem 0;">
+                <h3 style="cursor: pointer; font-size: 1.2rem; display: flex; justify-content: space-between;">Is it
+                    suitable for vegans? <span>+</span></h3>
+                <p style="margin-top: 0.5rem; opacity: 0.7;">Yes, all our ingredients are plant-based and suitable for a
+                    vegan diet.</p>
+            </div>
+            <div class="faq-item reveal-text" style="border-bottom: 1px solid var(--color-divider); padding: 1.5rem 0;">
+                <h3 style="cursor: pointer; font-size: 1.2rem; display: flex; justify-content: space-between;">Where can
+                    I buy it? <span>+</span></h3>
+                <p style="margin-top: 0.5rem; opacity: 0.7;">You can order directly from our shop or find us at major
+                    retailers nationwide.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <h2 style="font-size: 2rem; margin-bottom: var(--space-md);">BAVARIA</h2>
+            <p>Designed for the bold. Drink responsibly.</p>
+            <div style="margin-top: var(--space-md);">
+                <a href="#" style="margin: 0 10px;">Instagram</a>
+                <a href="#" style="margin: 0 10px;">Twitter</a>
+                <a href="#" style="margin: 0 10px;">Facebook</a>
+            </div>
+            <p style="margin-top: var(--space-lg); opacity: 0.5;">&copy; 2026 Bavaria N.V. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
