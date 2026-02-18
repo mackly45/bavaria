@@ -79,40 +79,46 @@ const ProductSection = ({ flavor = 'orange' }) => {
     return (
         <section id="product" className="section" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
             <div className="container">
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '20px', alignItems: 'center' }}>
-                    <div style={{ gridColumn: 'span 6' }} className="col-12-mobile">
+                <div className="grid" style={{ alignItems: 'center' }}>
+                    <div className="col-6 col-md-12 text-center-mobile">
                         <Reveal>
                             <p style={{
-                                color: 'var(--color-accent)',
+                                color: currentProduct.color,
                                 textTransform: 'uppercase',
                                 letterSpacing: '0.1em',
-                                marginBottom: '1rem'
+                                marginBottom: '1rem',
+                                fontWeight: 600
                             }}>
                                 L'Expérience
                             </p>
                         </Reveal>
                         <Reveal delay={0.3}>
-                            <h2 style={{ fontSize: '3rem', marginBottom: '1rem', lineHeight: 1.1 }}>
+                            <h2 style={{ marginBottom: '1.5rem' }}>
                                 {currentProduct.title} <br />
                                 <span style={{ color: currentProduct.color }}>{currentProduct.subtitle}</span>
                             </h2>
                         </Reveal>
                         <Reveal delay={0.4}>
-                            <p style={{ opacity: 0.8, marginBottom: '2rem', maxWidth: '500px' }}>
+                            <p className="margin-inline-auto-mobile" style={{ opacity: 0.8, marginBottom: '2rem', maxWidth: '500px' }}>
                                 {currentProduct.description}
                             </p>
-                            <ul style={{ color: 'var(--color-text-secondary)', listStyle: 'none' }}>
+                            <ul style={{
+                                color: 'var(--color-text-secondary)',
+                                listStyle: 'none',
+                                display: 'inline-block',
+                                textAlign: 'left'
+                            }}>
                                 <li style={{ marginBottom: '0.5rem' }}>• 0.0% Alcohol</li>
                                 <li style={{ marginBottom: '0.5rem' }}>• Natural Ingredients</li>
                                 <li>• Low Calorie</li>
                             </ul>
-                            <div style={{ marginTop: '2rem' }}>
+                            <div style={{ marginTop: '2.5rem' }}>
                                 <a href="#shop" className="btn btn-primary" style={{ backgroundColor: currentProduct.color, borderColor: currentProduct.color }}>Acheter maintenant</a>
                             </div>
                         </Reveal>
                     </div>
 
-                    <div style={{ gridColumn: 'span 6', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="col-12-mobile">
+                    <div className="col-6 col-md-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         {/* 3D Interactive Card Container */}
                         <div
                             ref={cardRef}
@@ -120,7 +126,7 @@ const ProductSection = ({ flavor = 'orange' }) => {
                             onMouseLeave={handleMouseLeave}
                             style={{
                                 width: '100%',
-                                height: '500px', // Increased height for the can
+                                height: 'clamp(300px, 50vh, 500px)',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -154,25 +160,20 @@ const ProductSection = ({ flavor = 'orange' }) => {
                                     transition={{ duration: 0.5 }}
                                     src={currentProduct.image}
                                     alt={`Bavaria ${flavor} Can 3D`}
+                                    loading="lazy"
                                     style={{
-                                        height: '450px',
+                                        height: 'clamp(250px, 40vh, 450px)',
                                         width: 'auto',
                                         objectFit: 'contain',
                                         filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.6))', // Strong shadow for depth
                                         transform: 'translateZ(50px)' // Pushed forward slightly
                                     }}
                                 />
-                                {/* Optional: Back glow/shadow element could go here if needed */}
                             </motion.div>
                         </div>
                     </div>
                 </div>
             </div>
-            <style>{`
-                @media (max-width: 768px) {
-                    .col-12-mobile { grid-column: span 12 !important; }
-                }
-            `}</style>
         </section>
     );
 };

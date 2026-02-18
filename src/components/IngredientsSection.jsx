@@ -39,16 +39,17 @@ const IngredientsSection = ({ flavor = 'orange' }) => {
     return (
         <section id="ingredients" className="section" style={{ backgroundColor: '#0a0a0a' }}>
             <div className="container">
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '20px', alignItems: 'center' }}>
-                    <div style={{ gridColumn: 'span 6', order: 2 }} className="col-12-mobile">
+                <div className="grid" style={{ alignItems: 'center' }}>
+                    <div className="col-6 col-md-12 text-center-mobile" style={{ order: 2 }}>
                         <motion.div style={{ y, display: 'flex', justifyContent: 'center' }}>
                             {/* Animated Flavor Image */}
                             <motion.img
                                 key={flavor}
                                 src={currentData.animImg}
-                                alt={`${flavor} slices`}
+                                alt={`${flavor} slices animation`}
+                                loading="lazy"
                                 style={{
-                                    maxWidth: '100%',
+                                    maxWidth: '90%',
                                     height: 'auto',
                                     filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.3))'
                                 }}
@@ -59,7 +60,7 @@ const IngredientsSection = ({ flavor = 'orange' }) => {
                         </motion.div>
                     </div>
 
-                    <div style={{ gridColumn: 'span 6', paddingRight: '2rem', order: 1 }} className="col-12-mobile">
+                    <div className="col-6 col-md-12 text-center-mobile" style={{ order: 1 }}>
                         <Reveal>
                             <p style={{
                                 color: currentData.accent,
@@ -72,10 +73,15 @@ const IngredientsSection = ({ flavor = 'orange' }) => {
                             </p>
                         </Reveal>
                         <Reveal delay={0.3}>
-                            <h2 style={{ fontSize: '3rem', marginBottom: '2rem', lineHeight: 1.1 }}>Le meilleur de la nature</h2>
+                            <h2 style={{ marginBottom: '2rem' }}>Le meilleur de la nature</h2>
                         </Reveal>
                         <Reveal delay={0.4}>
-                            <p style={{ opacity: 0.8, maxWidth: '500px', lineHeight: 1.6, fontSize: '1.1rem' }}>
+                            <p className="margin-inline-auto-mobile" style={{
+                                opacity: 0.8,
+                                maxWidth: '500px',
+                                lineHeight: 1.6,
+                                fontSize: 'var(--fs-body)'
+                            }}>
                                 Nous croyons en la transparence. Sans colorants artificiels, sans conservateurs.
                                 Juste la qualité du malt d'orge, du houblon et des extraits naturels de fruits.
                             </p>
@@ -83,11 +89,6 @@ const IngredientsSection = ({ flavor = 'orange' }) => {
                     </div>
                 </div>
             </div>
-            <style>{`
-                @media (max-width: 768px) {
-                    .col-12-mobile { grid-column: span 12 !important; order: initial !important; }
-                }
-            `}</style>
         </section>
     );
 };

@@ -9,8 +9,8 @@ const FAQSection = () => {
             <div className="container" style={{ maxWidth: '800px' }}>
                 <Reveal width="100%">
                     <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                        <p style={{ color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Common Questions</p>
-                        <h2 style={{ fontSize: '3rem' }}>FAQ</h2>
+                        <p style={{ color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>Questions fréquentes</p>
+                        <h2>FAQ</h2>
                     </div>
                 </Reveal>
 

@@ -7,35 +7,30 @@ const ReviewsSection = () => {
             <div className="container">
                 <Reveal width="100%">
                     <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                        <p style={{ color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Community</p>
-                        <h2 style={{ fontSize: '3rem' }}>What People Say</h2>
+                        <p style={{ color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>Communauté</p>
+                        <h2>Ce que les gens disent</h2>
                     </div>
                 </Reveal>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '2rem' }}>
-                    <div style={{ gridColumn: 'span 6' }} className="col-12-mobile">
+                <div className="grid">
+                    <div className="col-6 col-md-12">
                         <Reveal delay={0.2}>
                             <ReviewCard
-                                quote="Absolutely refreshing! The malt gives it a depth that soda just doesn't have, and the orange is perfectly balanced."
+                                quote="Absolument rafraîchissant ! Le malt donne une profondeur que les sodas n'ont pas, et l'orange est parfaitement équilibrée."
                                 author="Sarah M."
                             />
                         </Reveal>
                     </div>
-                    <div style={{ gridColumn: 'span 6' }} className="col-12-mobile">
+                    <div className="col-6 col-md-12">
                         <Reveal delay={0.4}>
                             <ReviewCard
-                                quote="My go-to drink after a workout. Hydrating without being overly sweet. Love the new design too!"
+                                quote="Ma boisson préférée après une séance de sport. Hydratante sans être trop sucrée. J'adore le nouveau design !"
                                 author="David K."
                             />
                         </Reveal>
                     </div>
                 </div>
             </div>
-            <style>{`
-                @media (max-width: 768px) {
-                    .col-12-mobile { grid-column: span 12 !important; }
-                }
-            `}</style>
         </section>
     );
 };

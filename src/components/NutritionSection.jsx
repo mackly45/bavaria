@@ -6,22 +6,25 @@ const NutritionSection = () => {
         <section id="nutrition" className="section">
             <div className="container" style={{ textAlign: 'center' }}>
                 <Reveal width="100%">
-                    <h2 style={{ fontSize: '3rem', marginBottom: '3rem' }}>Nutritional Values</h2>
+                    <h2 style={{ marginBottom: '3rem' }}>Valeurs Nutritionnelles</h2>
                 </Reveal>
 
                 <Reveal width="100%" delay={0.4}>
-                    <div style={{ overflowX: 'auto', display: 'flex', justifyContent: 'center' }}>
+                    <div style={{ overflowX: 'auto', display: 'flex', justifyContent: 'center', padding: '0 1rem' }}>
                         <table style={{
                             width: '100%',
                             maxWidth: '800px',
                             borderCollapse: 'collapse',
-                            textAlign: 'left'
+                            textAlign: 'left',
+                            fontSize: 'var(--fs-body)'
                         }}>
                             <tbody>
-                                <TableRow label="Per 100ml" value="Value" header />
-                                <TableRow label="Energy" value="28 kcal" />
-                                <TableRow label="Carbohydrates" value="6.5g" />
-                                <TableRow label="- Sugars" value="6.5g" />
+                                <TableRow label="Pour 100ml" value="Valeur" header />
+                                <TableRow label="Énergie" value="28 kcal" />
+                                <TableRow label="Glucides" value="6.5g" />
+                                <TableRow label="- dont sucres" value="6.5g" />
+                                <TableRow label="Protéines" value="0.0g" />
+                                <TableRow label="Sel" value="< 0.01g" />
                             </tbody>
                         </table>
                     </div>

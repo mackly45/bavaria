@@ -77,32 +77,46 @@ const Navbar = () => {
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
+                        initial={{ opacity: 0, x: '100%' }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: '100%' }}
+                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                         style={{
-                            position: 'absolute',
-                            top: '100%',
-                            left: 0,
-                            width: '100%',
-                            backgroundColor: '#050505',
-                            padding: '2rem',
+                            position: 'fixed',
+                            top: 0,
+                            right: 0,
+                            width: '80%',
+                            maxWidth: '400px',
+                            height: '100vh',
+                            backgroundColor: 'rgba(5, 5, 5, 0.95)',
+                            backdropFilter: 'blur(30px)',
+                            padding: '120px 2rem 2rem',
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: '1.5rem',
-                            alignItems: 'center',
-                            borderBottom: '1px solid rgba(255,255,255,0.1)'
+                            gap: '2rem',
+                            zIndex: 10,
+                            borderLeft: '1px solid rgba(255,255,255,0.1)',
+                            boxShadow: '-10px 0 50px rgba(0,0,0,0.5)'
                         }}
                     >
-                        {navLinks.map((link) => (
-                            <a
+                        {navLinks.map((link, i) => (
+                            <motion.a
                                 key={link.name}
                                 href={link.href}
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: i * 0.1 + 0.3 }}
                                 onClick={() => setMobileMenuOpen(false)}
-                                style={{ fontSize: '1.2rem', textTransform: 'uppercase' }}
+                                style={{
+                                    textTransform: 'uppercase',
+                                    fontSize: '1.5rem',
+                                    fontWeight: 600,
+                                    letterSpacing: '0.05em',
+                                    opacity: 0.8
+                                }}
                             >
                                 {link.name}
-                            </a>
+                            </motion.a>
                         ))}
                     </motion.div>
                 )}
@@ -110,12 +124,12 @@ const Navbar = () => {
 
             {/* Responsive Styles Injection */}
             <style>{`
-                @media (max-width: 768px) {
+                @media (max-width: 1024px) {
                     .desktop-only { display: none !important; }
+                    .desktop-hidden { display: block !important; }
                 }
-                @media (min-width: 769px) {
-                    .mobile-toggle { display: none !important; }
-                }
+                .desktop-hidden { display: none; }
+                .nav-link:hover { opacity: 1 !important; }
             `}</style>
         </motion.nav>
     );

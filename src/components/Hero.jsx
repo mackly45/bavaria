@@ -153,11 +153,15 @@ const Hero = ({ flavor, setFlavor }) => {
                         scale: 1
                     }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    alt="Bavaria Static"
+                    alt={`Bavaria ${flavor} Static`}
+                    loading="eager"
+                    fetchpriority="high"
                     style={{
                         position: 'absolute', // Maintain absolute to stack images
-                        height: '80vh',
+                        height: 'auto',
                         width: 'auto',
+                        maxHeight: '70vh',
+                        maxWidth: '80%',
                         objectFit: 'contain',
                         filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))',
                         willChange: 'transform, opacity' // Optimization
@@ -168,11 +172,14 @@ const Hero = ({ flavor, setFlavor }) => {
                 <motion.img
                     key={`anim-${flavor}`}
                     src={currentFlavor.animImg}
-                    alt="Bavaria Animated"
+                    alt={`Bavaria ${flavor} Animated`}
+                    loading="lazy"
                     style={{
                         position: 'absolute', // Maintain absolute to stack images
-                        height: '80vh',
+                        height: 'auto',
                         width: 'auto',
+                        maxHeight: '70vh',
+                        maxWidth: '80%',
                         objectFit: 'contain',
                         opacity: showAnim ? 1 : 0,
                         transition: 'opacity 0.8s ease-in-out',
@@ -184,27 +191,18 @@ const Hero = ({ flavor, setFlavor }) => {
 
             {/* Content Layers */}
             <div className="container" style={{ position: 'relative', zIndex: 10, height: '100%', display: 'flex', alignItems: 'center' }}>
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: 'min(30vw, 500px)', // Gap to push text away from center can
-                    width: '100%',
-                    alignItems: 'center',
-                    pointerEvents: 'none' // Let mouse pass through to container for tilt
-                }}>
+                <div className="grid" style={{ width: '100%', alignItems: 'center' }}>
                     {/* Left Column: Title & Subtitle */}
                     <motion.div
+                        className="col-6 col-sm-12 text-center-mobile"
                         style={{ textAlign: 'left', opacity, y: y1 }}
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, delay: 0.5 }}
                     >
                         <h1 style={{
-                            fontSize: 'clamp(3rem, 6vw, 5rem)',
-                            fontWeight: 700,
-                            lineHeight: 1.1,
-                            marginBottom: '0.5rem',
-                            textTransform: 'uppercase'
+                            textTransform: 'uppercase',
+                            marginBottom: '1rem'
                         }}>
                             <motion.span
                                 key={`title-${flavor}`}
@@ -224,7 +222,7 @@ const Hero = ({ flavor, setFlavor }) => {
                             </motion.span>
                         </h1>
                         <p style={{
-                            fontSize: '1.5rem',
+                            fontSize: 'clamp(1rem, 2vw, 1.5rem)',
                             textTransform: 'uppercase',
                             letterSpacing: '0.2em',
                             opacity: 0.9,
@@ -237,98 +235,77 @@ const Hero = ({ flavor, setFlavor }) => {
 
                     {/* Right Column: Description & Buttons */}
                     <motion.div
-                        style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', opacity, y: y1 }}
+                        className="col-6 col-sm-12 text-center-mobile"
+                        style={{
+                            textAlign: 'right',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'flex-end',
+                            opacity,
+                            y: y1
+                        }}
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, delay: 0.7 }}
                     >
-                        <motion.p
-                            key={`desc-${flavor}`}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            style={{
-                                fontSize: '1.25rem',
-                                maxWidth: '400px',
-                                marginBottom: '2rem',
-                                lineHeight: 1.6,
-                                fontWeight: 300
-                            }}
-                        >
-                            {currentFlavor.description}
-                        </motion.p>
+                        {/* Wrapper for mobile center alignment */}
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'inherit' }}>
+                            <motion.p
+                                key={`desc-${flavor}`}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5 }}
+                                className="margin-inline-auto-mobile"
+                                style={{
+                                    maxWidth: '400px',
+                                    marginBottom: '2rem',
+                                    lineHeight: 1.6,
+                                    fontWeight: 300,
+                                    fontSize: 'var(--fs-body)'
+                                }}
+                            >
+                                {currentFlavor.description}
+                            </motion.p>
 
-                        <div style={{ display: 'flex', gap: '1rem', pointerEvents: 'auto', marginBottom: '2rem' }}>
-                            <a href="#product" className="btn btn-secondary">Découvrir</a>
-                            <a href="#shop" className="btn btn-primary" style={{
-                                backgroundColor: currentFlavor.color,
-                                borderColor: currentFlavor.color,
-                                color: '#fff'
-                            }}>Acheter</a>
-                        </div>
+                            <div style={{ display: 'flex', gap: '1rem', pointerEvents: 'auto', marginBottom: '2.5rem', justifyContent: 'inherit' }}>
+                                <a href="#product" className="btn btn-secondary">Découvrir</a>
+                                <a href="#shop" className="btn btn-primary" style={{
+                                    backgroundColor: currentFlavor.color,
+                                    borderColor: currentFlavor.color,
+                                    color: '#fff'
+                                }}>Acheter</a>
+                            </div>
 
-                        {/* Flavor Switcher Controls */}
-                        <div style={{ display: 'flex', gap: '10px', pointerEvents: 'auto' }}>
-                            <button
-                                onClick={() => setFlavor('orange')}
-                                style={{
-                                    width: '30px', height: '30px', borderRadius: '50%',
-                                    background: 'var(--color-accent)',
-                                    border: flavor === 'orange' ? '2px solid white' : 'none',
-                                    cursor: 'pointer',
-                                    scale: flavor === 'orange' ? 1.2 : 1,
-                                    transition: 'all 0.3s ease'
-                                }}
-                                aria-label="Switch to Orange Flavor"
-                            />
-                            <button
-                                onClick={() => setFlavor('apple')}
-                                style={{
-                                    width: '30px', height: '30px', borderRadius: '50%',
-                                    background: '#7cbd1e',
-                                    border: flavor === 'apple' ? '2px solid white' : 'none',
-                                    cursor: 'pointer',
-                                    scale: flavor === 'apple' ? 1.2 : 1,
-                                    transition: 'all 0.3s ease'
-                                }}
-                                aria-label="Switch to Apple Flavor"
-                            />
-                            <button
-                                onClick={() => setFlavor('strawberry')}
-                                style={{
-                                    width: '30px', height: '30px', borderRadius: '50%',
-                                    background: '#ff3d5a',
-                                    border: flavor === 'strawberry' ? '2px solid white' : 'none',
-                                    cursor: 'pointer',
-                                    scale: flavor === 'strawberry' ? 1.2 : 1,
-                                    transition: 'all 0.3s ease'
-                                }}
-                                aria-label="Switch to Strawberry Flavor"
-                            />
-                            <button
-                                onClick={() => setFlavor('pineapple')}
-                                style={{
-                                    width: '30px', height: '30px', borderRadius: '50%',
-                                    background: '#ffcc00',
-                                    border: flavor === 'pineapple' ? '2px solid white' : 'none',
-                                    cursor: 'pointer',
-                                    scale: flavor === 'pineapple' ? 1.2 : 1,
-                                    transition: 'all 0.3s ease'
-                                }}
-                                aria-label="Switch to Pineapple Flavor"
-                            />
-                            <button
-                                onClick={() => setFlavor('wheat')}
-                                style={{
-                                    width: '30px', height: '30px', borderRadius: '50%',
-                                    background: '#d4a373',
-                                    border: flavor === 'wheat' ? '2px solid white' : 'none',
-                                    cursor: 'pointer',
-                                    scale: flavor === 'wheat' ? 1.2 : 1,
-                                    transition: 'all 0.3s ease'
-                                }}
-                                aria-label="Switch to Wheat Flavor"
-                            />
+                            {/* Flavor Switcher Controls */}
+                            <div style={{
+                                display: 'flex',
+                                gap: '12px',
+                                pointerEvents: 'auto',
+                                background: 'rgba(255,255,255,0.05)',
+                                padding: '10px 20px',
+                                borderRadius: '100px',
+                                backdropFilter: 'blur(10px)',
+                                border: '1px solid rgba(255,255,255,0.1)'
+                            }}>
+                                {Object.keys(flavors).map((key) => (
+                                    <button
+                                        key={key}
+                                        onClick={() => setFlavor(key)}
+                                        style={{
+                                            width: '28px',
+                                            height: '28px',
+                                            borderRadius: '50%',
+                                            background: flavors[key].color,
+                                            border: flavor === key ? '2px solid #fff' : '2px solid transparent',
+                                            boxShadow: flavor === key ? `0 0 15px ${flavors[key].color}` : 'none',
+                                            cursor: 'pointer',
+                                            scale: flavor === key ? 1.2 : 1,
+                                            transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                                        }}
+                                        aria-label={`Switch to ${key} Flavor`}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </motion.div>
                 </div>
@@ -337,14 +314,16 @@ const Hero = ({ flavor, setFlavor }) => {
             {/* Mobile Responsive Adjustment Styles */}
             <style>{`
                 @media (max-width: 768px) {
-                    .container > div {
-                        grid-template-columns: 1fr !important;
-                        text-align: center !important;
-                        gap: 4rem !important;
-                    }
-                    .container > div > div {
+                    .text-center-mobile {
                         text-align: center !important;
                         align-items: center !important;
+                    }
+                    .grid {
+                        gap: 2rem !important;
+                    }
+                    /* Push description section down so it doesn't overlap centered can as much */
+                    .container > .grid > div:last-child {
+                        margin-top: 40vh;
                     }
                 }
             `}</style>

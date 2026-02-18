@@ -2,21 +2,24 @@ import React from 'react';
 
 const ContactSection = () => {
     return (
-        <footer id="contact" style={{ padding: '4rem 5vw', borderTop: '1px solid var(--color-divider)', textAlign: 'center' }}>
+        <footer id="contact" style={{ padding: '8vh 5vw', borderTop: '1px solid var(--color-divider)', textAlign: 'center', backgroundColor: '#050505' }}>
             <div className="container">
-                <h2 style={{ fontSize: '2rem', marginBottom: '1rem', letterSpacing: '-0.02em', fontWeight: 700 }}>BAVARIA</h2>
-                <p style={{ marginBottom: '2rem', opacity: 0.8 }}>Designed for the bold. Drink responsibly.</p>
+                <h2 style={{ marginBottom: '1.5rem', letterSpacing: '-0.02em', fontWeight: 800 }}>BAVARIA</h2>
+                <p style={{ marginBottom: '2.5rem', opacity: 0.8, fontSize: 'var(--fs-body)' }}>Conçu pour l'audace. À consommer frais.</p>
 
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '3rem' }}>
-                    <a href="#" style={{ opacity: 0.7, transition: '0.3s', textTransform: 'uppercase', fontSize: '0.8rem' }} className="hover-link">Instagram</a>
-                    <a href="#" style={{ opacity: 0.7, transition: '0.3s', textTransform: 'uppercase', fontSize: '0.8rem' }} className="hover-link">Twitter</a>
-                    <a href="#" style={{ opacity: 0.7, transition: '0.3s', textTransform: 'uppercase', fontSize: '0.8rem' }} className="hover-link">Facebook</a>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '3rem', marginBottom: '4rem', flexWrap: 'wrap' }}>
+                    <a href="#" className="hover-link" style={{ opacity: 0.6, fontSize: '0.9rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Instagram</a>
+                    <a href="#" className="hover-link" style={{ opacity: 0.6, fontSize: '0.9rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Twitter</a>
+                    <a href="#" className="hover-link" style={{ opacity: 0.6, fontSize: '0.9rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Facebook</a>
                 </div>
 
-                <p style={{ opacity: 0.4, fontSize: '0.8rem' }}>&copy; 2026 Bavaria N.V. All rights reserved.</p>
+                <div style={{ opacity: 0.4, fontSize: '0.8rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '2rem' }}>
+                    <p>&copy; 2026 Bavaria N.V. Tous droits réservés.</p>
+                </div>
             </div>
             <style>{`
-                .hover-link:hover { opacity: 1 !important; color: var(--color-accent); }
+                .hover-link { transition: all 0.3s ease; }
+                .hover-link:hover { opacity: 1 !important; color: var(--color-accent); transform: translateY(-2px); }
             `}</style>
         </footer>
     );
