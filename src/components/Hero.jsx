@@ -4,6 +4,29 @@ import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'fram
 const Hero = () => {
     const containerRef = useRef(null);
     const { scrollY } = useScroll();
+    const [flavor, setFlavor] = useState('orange');
+
+    // Flavor Data
+    const flavors = {
+        orange: {
+            title: "Orange",
+            subtitle: "de Bavière",
+            description: "Une intensité d'orange éclatante. Fraîcheur pur. Caractère affirmé.",
+            color: "var(--color-primary)",
+            staticImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(14).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE0KS5wbmciLCJpYXQiOjE3NzEzNjg4NDcsImV4cCI6MTkyOTA0ODg0N30.2xD32gqThyTJV-52mX_P511FiqEompd35p8JPBKs7mU",
+            animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/beb9d821-bba8-43c0-bb28-61d8e9fef4c9-27fb641c-a117-4da4-86de-c877e6c150ad-ezgif.com-video-to-webp-converter.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvYmViOWQ4MjEtYmJhOC00M2MwLWJiMjgtNjFkOGU5ZmVmNGM5LTI3ZmI2NDFjLWExMTctNGRhNC04NmRlLWM4NzdlNmMxNTBhZC1lemdpZi5jb20tdmlkZW8tdG8td2VicC1jb252ZXJ0ZXIud2VicCIsImlhdCI6MTc3MTM2ODg3OSwiZXhwIjoxOTI5MDQ4ODc5fQ.wp0fCDBL0bJztXJ7utjE_dEHfUW9HJgYh-BRxWCK-Mk"
+        },
+        apple: {
+            title: "Pomme",
+            subtitle: "de Bavière",
+            description: "Une explosion de pomme verte. Vivacité naturelle. Goût authentique.",
+            color: "#7cbd1e", // Apple Green
+            staticImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(16).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE2KS5wbmciLCJpYXQiOjE3NzEzNzc3MDcsImV4cCI6MjAyMzY2NTcwN30.iNol04U1o5ZrdbUtfPWKGfoK0SDKBkqHRM_2Kh0y8CE",
+            animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(16).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE2KS5wbmciLCJpYXQiOjE3NzEzNzc5MDMsImV4cCI6MjAyMzY2NTkwM30._5Q0Bx0FzlMsBB4kALuG5rAkD7cD0qJnbdU7D_zfaYo"
+        }
+    };
+
+    const currentFlavor = flavors[flavor];
 
     // Mouse Parallax Logic
     const x = useMotionValue(0);
@@ -70,10 +93,10 @@ const Hero = () => {
                 perspective: '1200px' // Essential for 3D
             }}
         >
-            {/* Background Gradient/Atmosphere */}
+            {/* Background Atmosphere - Fixed Dark */}
             <div style={{
                 position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
-                background: 'radial-gradient(circle at center, rgba(60,20,0,0.4) 0%, rgba(0,0,0,1) 90%)',
+                background: 'radial-gradient(circle at center, rgba(30,30,30,0.4) 0%, rgba(0,0,0,1) 90%)',
                 zIndex: 0,
                 pointerEvents: 'none'
             }}></div>
@@ -98,15 +121,20 @@ const Hero = () => {
             >
                 {/* Static Image */}
                 <motion.img
-                    src="https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(14).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE0KS5wbmciLCJpYXQiOjE3NzEzNjg4NDcsImV4cCI6MTkyOTA0ODg0N30.2xD32gqThyTJV-52mX_P511FiqEompd35p8JPBKs7mU"
+                    key={`static-${flavor}`} // Force re-render on change
+                    src={currentFlavor.staticImg}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{
+                        opacity: showAnim ? 0 : 1,
+                        scale: 1
+                    }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                     alt="Bavaria Static"
                     style={{
                         position: 'absolute', // Maintain absolute to stack images
                         height: '80vh',
                         width: 'auto',
                         objectFit: 'contain',
-                        opacity: showAnim ? 0 : 1,
-                        transition: 'opacity 0.8s ease-in-out',
                         filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))',
                         willChange: 'transform, opacity' // Optimization
                     }}
@@ -114,7 +142,8 @@ const Hero = () => {
 
                 {/* Animated WebP */}
                 <motion.img
-                    src="https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/beb9d821-bba8-43c0-bb28-61d8e9fef4c9-27fb641c-a117-4da4-86de-c877e6c150ad-ezgif.com-video-to-webp-converter.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvYmViOWQ4MjEtYmJhOC00M2MwLWJiMjgtNjFkOGU5ZmVmNGM5LTI3ZmI2NDFjLWExMTctNGRhNC04NmRlLWM4NzdlNmMxNTBhZC1lemdpZi5jb20tdmlkZW8tdG8td2VicC1jb252ZXJ0ZXIud2VicCIsImlhdCI6MTc3MTM2ODg3OSwiZXhwIjoxOTI5MDQ4ODc5fQ.wp0fCDBL0bJztXJ7utjE_dEHfUW9HJgYh-BRxWCK-Mk"
+                    key={`anim-${flavor}`}
+                    src={currentFlavor.animImg}
                     alt="Bavaria Animated"
                     style={{
                         position: 'absolute', // Maintain absolute to stack images
@@ -153,8 +182,15 @@ const Hero = () => {
                             marginBottom: '0.5rem',
                             textTransform: 'uppercase'
                         }}>
-                            Orange <br />
-                            <span style={{ color: 'var(--color-primary)' }}>de Bavière</span>
+                            {currentFlavor.title} <br />
+                            <motion.span
+                                key={flavor}
+                                initial={{ color: '#fff' }}
+                                animate={{ color: currentFlavor.color }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                {currentFlavor.subtitle}
+                            </motion.span>
                         </h1>
                         <p style={{
                             fontSize: '1.5rem',
@@ -174,19 +210,53 @@ const Hero = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, delay: 0.7 }}
                     >
-                        <p style={{
-                            fontSize: '1.25rem',
-                            maxWidth: '400px',
-                            marginBottom: '2rem',
-                            lineHeight: 1.6,
-                            fontWeight: 300
-                        }}>
-                            Une intensité d'orange éclatante. Fraîcheur pur. Caractère affirmé.
-                        </p>
+                        <motion.p
+                            key={`desc-${flavor}`}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            style={{
+                                fontSize: '1.25rem',
+                                maxWidth: '400px',
+                                marginBottom: '2rem',
+                                lineHeight: 1.6,
+                                fontWeight: 300
+                            }}
+                        >
+                            {currentFlavor.description}
+                        </motion.p>
 
-                        <div style={{ display: 'flex', gap: '1rem', pointerEvents: 'auto' }}>
+                        <div style={{ display: 'flex', gap: '1rem', pointerEvents: 'auto', marginBottom: '2rem' }}>
                             <a href="#product" className="btn btn-secondary">Découvrir</a>
-                            <a href="#shop" className="btn btn-primary">Acheter</a>
+                            <a href="#shop" className="btn btn-primary" style={{ backgroundColor: currentFlavor.color, borderColor: currentFlavor.color }}>Acheter</a>
+                        </div>
+
+                        {/* Flavor Switcher Controls */}
+                        <div style={{ display: 'flex', gap: '10px', pointerEvents: 'auto' }}>
+                            <button
+                                onClick={() => setFlavor('orange')}
+                                style={{
+                                    width: '30px', height: '30px', borderRadius: '50%',
+                                    background: 'var(--color-primary)',
+                                    border: flavor === 'orange' ? '2px solid white' : 'none',
+                                    cursor: 'pointer',
+                                    scale: flavor === 'orange' ? 1.2 : 1,
+                                    transition: 'all 0.3s ease'
+                                }}
+                                aria-label="Switch to Orange Flavor"
+                            />
+                            <button
+                                onClick={() => setFlavor('apple')}
+                                style={{
+                                    width: '30px', height: '30px', borderRadius: '50%',
+                                    background: '#7cbd1e',
+                                    border: flavor === 'apple' ? '2px solid white' : 'none',
+                                    cursor: 'pointer',
+                                    scale: flavor === 'apple' ? 1.2 : 1,
+                                    transition: 'all 0.3s ease'
+                                }}
+                                aria-label="Switch to Apple Flavor"
+                            />
                         </div>
                     </motion.div>
                 </div>
