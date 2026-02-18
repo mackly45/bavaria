@@ -16,6 +16,21 @@ const IngredientsSection = ({ flavor = 'orange' }) => {
             staticImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/tranche%20de%20pomme.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvdHJhbmNoZSBkZSBwb21tZS5wbmciLCJpYXQiOjE3NzEzODIxOTIsImV4cCI6MjAyMzY3MDE5Mn0.35-OjeaxqW04W3SThdvagt5sSkCdmRIWfRI_plhrj1o",
             animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/754c502c-984c-471e-ac8b-fc5678802b91-db3cc489-ad19-4fc0-83f3-8d40fc436d24-ezgif.com-video-to-webp-converter.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvNzU0YzUwMmMtOTg0Yy00NzFlLWFjOGItZmM1Njc4ODAyYjkxLWRiM2NjNDg5LWFkMTktNGZjMC04M2YzLThkNDBmYzQzNmQyNC1lemdpZi5jb20tdmlkZW8tdG8td2VicC1jb252ZXJ0ZXIud2VicCIsImlhdCI6MTc3MTM4MjM0NSwiZXhwIjoyMDIzNjcwMzQ1fQ.G82-DXwW-WfCq5FhTo1mF7YOwVpiJBEA4_A_eCSQ2tA",
             accent: "#7cbd1e"
+        },
+        strawberry: {
+            staticImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/fraise.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvZnJhaXNlLnBuZyIsImlhdCI6MTc3MTM4NjAwNywiZXhwIjoyMDIzNjc0MDA3fQ.iB1Pd2vz2VP8if92D3koDsStnHiabCkNIGCo8LwLid0",
+            animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/fray.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvZnJheS53ZWJwIiwiaWF0IjoxNzcxNDAwMzQ3LCJleHAiOjIwMjM2ODgzNDd9.c9VqABqvPq2UdYTlKk9azsxCMGLFDBn3TLHsqwdMOzM",
+            accent: "#ff3d5a"
+        },
+        pineapple: {
+            staticImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/anan.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvYW5hbi5wbmciLCJpYXQiOjE3NzE0MDQ0NDEsImV4cCI6MjAyMzY5MjQ0MX0.VxEFmZfiOrmzIX9XknxSx4YoOARqWjys7Npzlkg7b6s",
+            animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/blebleble.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvYmxlYmxlYmxlLndlYnAiLCJpYXQiOjE3NzE0MDQ3NTcsImV4cCI6MjAyMzY5Mjc1N30.33XwA89nJhMfsJkMAqdX0jYxCGqvSH11NIOwH0SrYqc",
+            accent: "#ffcc00"
+        },
+        wheat: {
+            staticImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web%20plus/blefa.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIgcGx1cy9ibGVmYS5wbmciLCJpYXQiOjE3NzE0MTM2MDUsImV4cCI6MjAyMzcwMTYwNX0.7h6Ml8K-jcRQwaonphzNcUkwQ3sksUG8LvaxKRlA9E4",
+            animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/anananana-ezgif.com-video-to-webp-converter.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvYW5hbmFuYW5hLWV6Z2lmLmNvbS12aWRlby10by13ZWJwLWNvbnZlcnRlci53ZWJwIiwiaWF0IjoxNzcxNDEzNjYyLCJleHAiOjIwMjM3MDE2NjJ9.LriCkhJeK8vfBcB7yFKjhTGISyFHI4PUuIDhNPJdSy8",
+            accent: "#d4a373"
         }
     };
 

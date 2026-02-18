@@ -15,10 +15,10 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { name: 'Product', href: '#product' },
-        { name: 'Ingredients', href: '#ingredients' },
+        { name: 'Produit', href: '#product' },
+        { name: 'Ingrédients', href: '#ingredients' },
         { name: 'Nutrition', href: '#nutrition' },
-        { name: 'Reviews', href: '#reviews' },
+        { name: 'Avis', href: '#reviews' },
         { name: 'Contact', href: '#contact' },
     ];
 

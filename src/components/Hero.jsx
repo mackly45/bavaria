@@ -23,6 +23,30 @@ const Hero = ({ flavor, setFlavor }) => {
             color: "#7cbd1e", // Apple Green
             staticImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(16).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE2KS5wbmciLCJpYXQiOjE3NzEzNzc3MDcsImV4cCI6MjAyMzY2NTcwN30.iNol04U1o5ZrdbUtfPWKGfoK0SDKBkqHRM_2Kh0y8CE",
             animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/97b88ed2-d759-4c28-ae0f-5e0c29a35c01-e8126a31-4d7e-4661-a392-add15836f97e-ezgif.com-video-to-webp-converter.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvOTdiODhlZDItZDc1OS00YzI4LWFlMGYtNWUwYzI5YTM1YzAxLWU4MTI2YTMxLTRkN2UtNDY2MS1hMzkyLWFkZDE1ODM2Zjk3ZS1lemdpZi5jb20tdmlkZW8tdG8td2VicC1jb252ZXJ0ZXIud2VicCIsImlhdCI6MTc3MTM3OTU1MCwiZXhwIjoyMDIzNjY3NTUwfQ.W5hluU6Ao16ZzSVl743cT9XlHHCQXaBQe-w-UsAw9mk"
+        },
+        strawberry: {
+            title: "Fraise",
+            subtitle: "de Bavaria",
+            description: "La douceur irrésistible de la fraise. Fruitée, sucrée, inoubliable.",
+            color: "#ff3d5a",
+            staticImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/fraise.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvZnJhaXNlLnBuZyIsImlhdCI6MTc3MTM4NjAwNywiZXhwIjoyMDIzNjc0MDA3fQ.iB1Pd2vz2VP8if92D3koDsStnHiabCkNIGCo8LwLid0",
+            animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/fraiseweb.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvZnJhaXNld2ViLndlYnAiLCJpYXQiOjE3NzEzODYyMDEsImV4cCI6MjAyMzY3NDIwMX0.9YgwxZEgAdn_OJj8kYjT-ZGWiF9hmG02-PxfSaVhgnE"
+        },
+        pineapple: {
+            title: "Ananas",
+            subtitle: "de Bavaria",
+            description: "Une évasion tropicale instantanée. Intense, ensoleillé, rafraîchissant.",
+            color: "#ffcc00",
+            staticImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/anan.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvYW5hbi5wbmciLCJpYXQiOjE3NzE0MDQ0NDEsImV4cCI6MjAyMzY5MjQ0MX0.VxEFmZfiOrmzIX9XknxSx4YoOARqWjys7Npzlkg7b6s",
+            animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/blebleble.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvYmxlYmxlYmxlLndlYnAiLCJpYXQiOjE3NzE0MDQ3NTcsImV4cCI6MjAyMzY5Mjc1N30.33XwA89nJhMfsJkMAqdX0jYxCGqvSH11NIOwH0SrYqc"
+        },
+        wheat: {
+            title: "Blé",
+            subtitle: "de Bavaria",
+            description: "L'essence même de nos champs. Doux, authentique, naturellement riche.",
+            color: "#d4a373", // Wheat Gold
+            staticImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web%20plus/blefa.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIgcGx1cy9ibGVmYS5wbmciLCJpYXQiOjE3NzE0MTM2MDUsImV4cCI6MjAyMzcwMTYwNX0.7h6Ml8K-jcRQwaonphzNcUkwQ3sksUG8LvaxKRlA9E4",
+            animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/anananana-ezgif.com-video-to-webp-converter.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvYW5hbmFuYW5hLWV6Z2lmLmNvbS12aWRlby10by13ZWJwLWNvbnZlcnRlci53ZWJwIiwiaWF0IjoxNzcxNDEzNjYyLCJleHAiOjIwMjM3MDE2NjJ9.LriCkhJeK8vfBcB7yFKjhTGISyFHI4PUuIDhNPJdSy8"
         }
     };
 
@@ -249,7 +273,7 @@ const Hero = ({ flavor, setFlavor }) => {
                                 onClick={() => setFlavor('orange')}
                                 style={{
                                     width: '30px', height: '30px', borderRadius: '50%',
-                                    background: 'var(--color-primary)',
+                                    background: 'var(--color-accent)',
                                     border: flavor === 'orange' ? '2px solid white' : 'none',
                                     cursor: 'pointer',
                                     scale: flavor === 'orange' ? 1.2 : 1,
@@ -268,6 +292,42 @@ const Hero = ({ flavor, setFlavor }) => {
                                     transition: 'all 0.3s ease'
                                 }}
                                 aria-label="Switch to Apple Flavor"
+                            />
+                            <button
+                                onClick={() => setFlavor('strawberry')}
+                                style={{
+                                    width: '30px', height: '30px', borderRadius: '50%',
+                                    background: '#ff3d5a',
+                                    border: flavor === 'strawberry' ? '2px solid white' : 'none',
+                                    cursor: 'pointer',
+                                    scale: flavor === 'strawberry' ? 1.2 : 1,
+                                    transition: 'all 0.3s ease'
+                                }}
+                                aria-label="Switch to Strawberry Flavor"
+                            />
+                            <button
+                                onClick={() => setFlavor('pineapple')}
+                                style={{
+                                    width: '30px', height: '30px', borderRadius: '50%',
+                                    background: '#ffcc00',
+                                    border: flavor === 'pineapple' ? '2px solid white' : 'none',
+                                    cursor: 'pointer',
+                                    scale: flavor === 'pineapple' ? 1.2 : 1,
+                                    transition: 'all 0.3s ease'
+                                }}
+                                aria-label="Switch to Pineapple Flavor"
+                            />
+                            <button
+                                onClick={() => setFlavor('wheat')}
+                                style={{
+                                    width: '30px', height: '30px', borderRadius: '50%',
+                                    background: '#d4a373',
+                                    border: flavor === 'wheat' ? '2px solid white' : 'none',
+                                    cursor: 'pointer',
+                                    scale: flavor === 'wheat' ? 1.2 : 1,
+                                    transition: 'all 0.3s ease'
+                                }}
+                                aria-label="Switch to Wheat Flavor"
                             />
                         </div>
                     </motion.div>
