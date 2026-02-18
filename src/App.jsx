@@ -14,6 +14,8 @@ import ContactSection from './components/ContactSection';
 function App() {
     const [isLoading, setIsLoading] = useState(true);
 
+    const [flavor, setFlavor] = useState('orange');
+
     useEffect(() => {
         // Initialize Lenis Smooth Scroll
         const lenis = new Lenis({
@@ -49,9 +51,9 @@ function App() {
             {!isLoading && (
                 <div className="app-content">
                     <Navbar />
-                    <Hero />
-                    <ProductSection />
-                    <IngredientsSection />
+                    <Hero flavor={flavor} setFlavor={setFlavor} />
+                    <ProductSection flavor={flavor} />
+                    <IngredientsSection flavor={flavor} />
                     <NutritionSection />
                     <ReviewsSection />
                     <FAQSection />

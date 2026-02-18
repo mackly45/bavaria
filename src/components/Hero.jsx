@@ -1,28 +1,28 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 
-const Hero = () => {
+const Hero = ({ flavor, setFlavor }) => {
     const containerRef = useRef(null);
     const { scrollY } = useScroll();
-    const [flavor, setFlavor] = useState('orange');
+    // const [flavor, setFlavor] = useState('orange'); // Moved to App.jsx
 
     // Flavor Data
     const flavors = {
         orange: {
             title: "Orange",
-            subtitle: "de Bavière",
+            subtitle: "de Bavaria",
             description: "Une intensité d'orange éclatante. Fraîcheur pur. Caractère affirmé.",
-            color: "var(--color-primary)",
+            color: "var(--color-accent)",
             staticImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(14).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE0KS5wbmciLCJpYXQiOjE3NzEzNjg4NDcsImV4cCI6MTkyOTA0ODg0N30.2xD32gqThyTJV-52mX_P511FiqEompd35p8JPBKs7mU",
             animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/beb9d821-bba8-43c0-bb28-61d8e9fef4c9-27fb641c-a117-4da4-86de-c877e6c150ad-ezgif.com-video-to-webp-converter.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvYmViOWQ4MjEtYmJhOC00M2MwLWJiMjgtNjFkOGU5ZmVmNGM5LTI3ZmI2NDFjLWExMTctNGRhNC04NmRlLWM4NzdlNmMxNTBhZC1lemdpZi5jb20tdmlkZW8tdG8td2VicC1jb252ZXJ0ZXIud2VicCIsImlhdCI6MTc3MTM2ODg3OSwiZXhwIjoxOTI5MDQ4ODc5fQ.wp0fCDBL0bJztXJ7utjE_dEHfUW9HJgYh-BRxWCK-Mk"
         },
         apple: {
             title: "Pomme",
-            subtitle: "de Bavière",
+            subtitle: "de Bavaria",
             description: "Une explosion de pomme verte. Vivacité naturelle. Goût authentique.",
             color: "#7cbd1e", // Apple Green
             staticImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(16).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE2KS5wbmciLCJpYXQiOjE3NzEzNzc3MDcsImV4cCI6MjAyMzY2NTcwN30.iNol04U1o5ZrdbUtfPWKGfoK0SDKBkqHRM_2Kh0y8CE",
-            animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(16).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE2KS5wbmciLCJpYXQiOjE3NzEzNzc5MDMsImV4cCI6MjAyMzY2NTkwM30._5Q0Bx0FzlMsBB4kALuG5rAkD7cD0qJnbdU7D_zfaYo"
+            animImg: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/97b88ed2-d759-4c28-ae0f-5e0c29a35c01-e8126a31-4d7e-4661-a392-add15836f97e-ezgif.com-video-to-webp-converter.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvOTdiODhlZDItZDc1OS00YzI4LWFlMGYtNWUwYzI5YTM1YzAxLWU4MTI2YTMxLTRkN2UtNDY2MS1hMzkyLWFkZDE1ODM2Zjk3ZS1lemdpZi5jb20tdmlkZW8tdG8td2VicC1jb252ZXJ0ZXIud2VicCIsImlhdCI6MTc3MTM3OTU1MCwiZXhwIjoyMDIzNjY3NTUwfQ.W5hluU6Ao16ZzSVl743cT9XlHHCQXaBQe-w-UsAw9mk"
         }
     };
 
@@ -182,7 +182,14 @@ const Hero = () => {
                             marginBottom: '0.5rem',
                             textTransform: 'uppercase'
                         }}>
-                            {currentFlavor.title} <br />
+                            <motion.span
+                                key={`title-${flavor}`}
+                                initial={{ color: '#fff' }}
+                                animate={{ color: currentFlavor.color }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                {currentFlavor.title}
+                            </motion.span> <br />
                             <motion.span
                                 key={flavor}
                                 initial={{ color: '#fff' }}
@@ -197,7 +204,8 @@ const Hero = () => {
                             textTransform: 'uppercase',
                             letterSpacing: '0.2em',
                             opacity: 0.9,
-                            fontWeight: 300
+                            fontWeight: 600,
+                            color: currentFlavor.color // Dynamic color
                         }}>
                             Boisson pétillante
                         </p>
@@ -228,7 +236,11 @@ const Hero = () => {
 
                         <div style={{ display: 'flex', gap: '1rem', pointerEvents: 'auto', marginBottom: '2rem' }}>
                             <a href="#product" className="btn btn-secondary">Découvrir</a>
-                            <a href="#shop" className="btn btn-primary" style={{ backgroundColor: currentFlavor.color, borderColor: currentFlavor.color }}>Acheter</a>
+                            <a href="#shop" className="btn btn-primary" style={{
+                                backgroundColor: currentFlavor.color,
+                                borderColor: currentFlavor.color,
+                                color: '#fff'
+                            }}>Acheter</a>
                         </div>
 
                         {/* Flavor Switcher Controls */}

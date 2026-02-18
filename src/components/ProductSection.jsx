@@ -2,8 +2,27 @@ import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Reveal from './Reveal';
 
-const ProductSection = () => {
+const ProductSection = ({ flavor = 'orange' }) => {
     const cardRef = useRef(null);
+
+    const products = {
+        orange: {
+            title: "Orange",
+            subtitle: "de Bavaria",
+            description: "Une intensité d'orange éclatante. Fraîcheur pure. Caractère affirmé.",
+            color: "var(--color-accent)",
+            image: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(14).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE0KS5wbmciLCJpYXQiOjE3NzEzNjg4NDcsImV4cCI6MTkyOTA0ODg0N30.2xD32gqThyTJV-52mX_P511FiqEompd35p8JPBKs7mU"
+        },
+        apple: {
+            title: "Pomme",
+            subtitle: "de Bavaria",
+            description: "Une explosion de pomme verte. Vivacité naturelle. Goût authentique.",
+            color: "#7cbd1e",
+            image: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(16).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE2KS5wbmciLCJpYXQiOjE3NzEzNzc5MDMsImV4cCI6MjAyMzY2NTkwM30._5Q0Bx0FzlMsBB4kALuG5rAkD7cD0qJnbdU7D_zfaYo"
+        }
+    };
+
+    const currentProduct = products[flavor];
 
     // 3D Tilt Logic
     const x = useMotionValue(0);
@@ -39,7 +58,7 @@ const ProductSection = () => {
     return (
         <section id="product" className="section" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
             <div className="container">
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '20px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '20px', alignItems: 'center' }}>
                     <div style={{ gridColumn: 'span 6' }} className="col-12-mobile">
                         <Reveal>
                             <p style={{
@@ -48,22 +67,27 @@ const ProductSection = () => {
                                 letterSpacing: '0.1em',
                                 marginBottom: '1rem'
                             }}>
-                                The Experience
+                                L'Expérience
                             </p>
                         </Reveal>
                         <Reveal delay={0.3}>
-                            <h2 style={{ fontSize: '3rem', marginBottom: '2rem' }}>Unmatched Freshness</h2>
+                            <h2 style={{ fontSize: '3rem', marginBottom: '1rem', lineHeight: 1.1 }}>
+                                {currentProduct.title} <br />
+                                <span style={{ color: currentProduct.color }}>{currentProduct.subtitle}</span>
+                            </h2>
                         </Reveal>
                         <Reveal delay={0.4}>
                             <p style={{ opacity: 0.8, marginBottom: '2rem', maxWidth: '500px' }}>
-                                Brewed with pure mineral water from our own spring, Bavaria offers a crisp, clean
-                                taste. The added orange essence brings a vibrant, citrusy kick that awakens your senses.
+                                {currentProduct.description}
                             </p>
                             <ul style={{ color: 'var(--color-text-secondary)', listStyle: 'none' }}>
                                 <li style={{ marginBottom: '0.5rem' }}>• 0.0% Alcohol</li>
                                 <li style={{ marginBottom: '0.5rem' }}>• Natural Ingredients</li>
                                 <li>• Low Calorie</li>
                             </ul>
+                            <div style={{ marginTop: '2rem' }}>
+                                <a href="#shop" className="btn btn-primary" style={{ backgroundColor: currentProduct.color, borderColor: currentProduct.color }}>Acheter maintenant</a>
+                            </div>
                         </Reveal>
                     </div>
 
@@ -103,8 +127,12 @@ const ProductSection = () => {
                             >
                                 {/* The Can */}
                                 <motion.img
-                                    src="https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(14).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE0KS5wbmciLCJpYXQiOjE3NzEzNjg4NDcsImV4cCI6MTkyOTA0ODg0N30.2xD32gqThyTJV-52mX_P511FiqEompd35p8JPBKs7mU"
-                                    alt="Bavaria Can 3D"
+                                    key={flavor} // Force re-render on switch for clean transition
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.5 }}
+                                    src={currentProduct.image}
+                                    alt={`Bavaria ${flavor} Can 3D`}
                                     style={{
                                         height: '450px',
                                         width: 'auto',
