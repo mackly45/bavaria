@@ -1,49 +1,13 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Reveal from './Reveal';
+import { flavors } from '../data/flavors';
 
 const ProductSection = ({ flavor = 'orange' }) => {
     const cardRef = useRef(null);
 
-    const products = {
-        orange: {
-            title: "Orange",
-            subtitle: "de Bavaria",
-            description: "Une intensité d'orange éclatante. Fraîcheur pure. Caractère affirmé.",
-            color: "var(--color-accent)",
-            image: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(14).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE0KS5wbmciLCJpYXQiOjE3NzEzNjg4NDcsImV4cCI6MTkyOTA0ODg0N30.2xD32gqThyTJV-52mX_P511FiqEompd35p8JPBKs7mU"
-        },
-        apple: {
-            title: "Pomme",
-            subtitle: "de Bavaria",
-            description: "Une explosion de pomme verte. Vivacité naturelle. Goût authentique.",
-            color: "#7cbd1e",
-            image: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/Suppression%20AI_image%20(16).png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvU3VwcHJlc3Npb24gQUlfaW1hZ2UgKDE2KS5wbmciLCJpYXQiOjE3NzEzNzc5MDMsImV4cCI6MjAyMzY2NTkwM30._5Q0Bx0FzlMsBB4kALuG5rAkD7cD0qJnbdU7D_zfaYo"
-        },
-        strawberry: {
-            title: "Fraise",
-            subtitle: "de Bavaria",
-            description: "La douceur irrésistible de la fraise. Fruitée, sucrée, inoubliable.",
-            color: "#ff3d5a",
-            image: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/fraise.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvZnJhaXNlLnBuZyIsImlhdCI6MTc3MTM4NjAwNywiZXhwIjoyMDIzNjc0MDA3fQ.iB1Pd2vz2VP8if92D3koDsStnHiabCkNIGCo8LwLid0"
-        },
-        pineapple: {
-            title: "Ananas",
-            subtitle: "de Bavaria",
-            description: "Une évasion tropicale instantanée. Intense, ensoleillé, rafraîchissant.",
-            color: "#ffcc00",
-            image: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web/anan.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIvYW5hbi5wbmciLCJpYXQiOjE3NzE0MDQ0NDEsImV4cCI6MjAyMzY5MjQ0MX0.VxEFmZfiOrmzIX9XknxSx4YoOARqWjys7Npzlkg7b6s"
-        },
-        wheat: {
-            title: "Blé",
-            subtitle: "de Bavaria",
-            description: "L'essence même de nos champs. Doux, authentique, naturellement riche.",
-            color: "#d4a373",
-            image: "https://tsnyhcvvkcmsrdgcbqzl.supabase.co/storage/v1/object/sign/web%20plus/blefa.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80ZDM3ODgyZi1mYTk5LTQyOTMtOGE4Yy1hMGMzNmU1ZjIyOGUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ3ZWIgcGx1cy9ibGVmYS5wbmciLCJpYXQiOjE3NzE0MTM2MDUsImV4cCI6MjAyMzcwMTYwNX0.7h6Ml8K-jcRQwaonphzNcUkwQ3sksUG8LvaxKRlA9E4"
-        }
-    };
 
-    const currentProduct = products[flavor];
+    const currentProduct = flavors[flavor];
 
     // 3D Tilt Logic
     const x = useMotionValue(0);
@@ -89,7 +53,7 @@ const ProductSection = ({ flavor = 'orange' }) => {
                                 marginBottom: '1rem',
                                 fontWeight: 600
                             }}>
-                                L'Expérience
+                                L’Expérience
                             </p>
                         </Reveal>
                         <Reveal delay={0.3}>
@@ -108,9 +72,9 @@ const ProductSection = ({ flavor = 'orange' }) => {
                                 display: 'inline-block',
                                 textAlign: 'left'
                             }}>
-                                <li style={{ marginBottom: '0.5rem' }}>• 0.0% Alcohol</li>
-                                <li style={{ marginBottom: '0.5rem' }}>• Natural Ingredients</li>
-                                <li>• Low Calorie</li>
+                                <li style={{ marginBottom: '0.5rem' }}>• 0,0 % d’alcool</li>
+                                <li style={{ marginBottom: '0.5rem' }}>• Ingrédients naturels</li>
+                                <li>• Faible en calories</li>
                             </ul>
                             <div style={{ marginTop: '2.5rem' }}>
                                 <a href="#shop" className="btn btn-primary" style={{ backgroundColor: currentProduct.color, borderColor: currentProduct.color }}>Acheter maintenant</a>
@@ -158,8 +122,8 @@ const ProductSection = ({ flavor = 'orange' }) => {
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ duration: 0.5 }}
-                                    src={currentProduct.image}
-                                    alt={`Bavaria ${flavor} Can 3D`}
+                                    src={currentProduct.canImg}
+                                    alt={`Canette Bavaria ${currentProduct.title}`}
                                     loading="lazy"
                                     style={{
                                         height: 'clamp(250px, 40vh, 450px)',

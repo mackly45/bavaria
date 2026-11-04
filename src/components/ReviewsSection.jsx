@@ -1,4 +1,3 @@
-import React from 'react';
 import Reveal from './Reveal';
 
 const ReviewsSection = () => {
@@ -42,7 +41,7 @@ const ReviewCard = ({ quote, author }) => (
         borderLeft: '2px solid var(--color-accent)',
         borderRadius: '0 10px 10px 0'
     }}>
-        <p style={{ fontSize: '1.1rem', marginBottom: '1rem', fontStyle: 'italic' }}>"{quote}"</p>
+        <p style={{ fontSize: '1.1rem', marginBottom: '1rem', fontStyle: 'italic' }}>&laquo; {quote} &raquo;</p>
         <p style={{ opacity: 0.6, fontSize: '0.9rem' }}>— {author}</p>
     </div>
 );
