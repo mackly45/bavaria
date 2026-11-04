@@ -1,5 +1,6 @@
 import Reveal from './Reveal';
-import { flavors } from '../data/flavors';
+import { flavors, BASE_INGREDIENTS } from '../data/flavors';
+import { useI18n } from '../i18n/I18nProvider';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const IngredientsSection = ({ flavor = 'orange' }) => {
@@ -7,7 +8,10 @@ const IngredientsSection = ({ flavor = 'orange' }) => {
     const y = useTransform(scrollYProgress, [0, 1], [0, -100]); // Gentle parallax
 
 
+    const { t, lang } = useI18n();
     const currentData = flavors[flavor];
+    const name = currentData.title[lang];
+    const ingredients = [...BASE_INGREDIENTS[lang], currentData.fruit[lang]];
 
     return (
         <section id="ingredients" className="section" style={{ backgroundColor: '#0a0a0a' }}>
@@ -16,11 +20,16 @@ const IngredientsSection = ({ flavor = 'orange' }) => {
                     <div className="col-6 col-md-12 text-center-mobile" style={{ order: 2 }}>
                         <motion.div style={{ y, display: 'flex', justifyContent: 'center' }}>
                             {/* Animated Flavor Image */}
-                            <motion.img
+                            <motion.video
                                 key={flavor}
-                                src={currentData.ingredientsImg}
-                                alt={`Ingrédients de la saveur ${currentData.title}`}
-                                loading="lazy"
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                preload="metadata"
+                                poster={currentData.ingredientsVideo.poster}
+                                aria-label={t('ingredients.visualAlt', { name })}
+                                className="blend-video"
                                 style={{
                                     maxWidth: '90%',
                                     height: 'auto',
@@ -29,7 +38,9 @@ const IngredientsSection = ({ flavor = 'orange' }) => {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.8 }}
-                            />
+                            >
+                                <source src={currentData.ingredientsVideo.mp4} type="video/mp4" />
+                            </motion.video>
                         </motion.div>
                     </div>
 
@@ -42,11 +53,11 @@ const IngredientsSection = ({ flavor = 'orange' }) => {
                                 marginBottom: '1rem',
                                 fontWeight: 600
                             }}>
-                                Pure et simple
+                                {t('ingredients.eyebrow')}
                             </p>
                         </Reveal>
                         <Reveal delay={0.3}>
-                            <h2 style={{ marginBottom: '2rem' }}>Le meilleur de la nature</h2>
+                            <h2 style={{ marginBottom: '2rem' }}>{t('ingredients.title')}</h2>
                         </Reveal>
                         <Reveal delay={0.4}>
                             <p className="margin-inline-auto-mobile" style={{
@@ -55,9 +66,12 @@ const IngredientsSection = ({ flavor = 'orange' }) => {
                                 lineHeight: 1.6,
                                 fontSize: 'var(--fs-body)'
                             }}>
-                                Nous croyons en la transparence. Sans colorants artificiels, sans conservateurs.
-                                Juste la qualité du malt d’orge, du houblon et des extraits naturels de fruits.
+                                {t('ingredients.text')}
                             </p>
+                            <h3 className="ingredients-list-title">{t('ingredients.listTitle', { name })}</h3>
+                            <ul className="ingredients-list" style={{ '--flavor': currentData.color }}>
+                                {ingredients.map((item) => <li key={item}>{item}</li>)}
+                            </ul>
                         </Reveal>
                     </div>
                 </div>

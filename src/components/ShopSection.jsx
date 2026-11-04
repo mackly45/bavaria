@@ -1,64 +1,85 @@
+import { useState } from 'react';
+import { ShoppingBag } from 'lucide-react';
 import Reveal from './Reveal';
+import StoreLocator from './StoreLocator';
 import { flavors } from '../data/flavors';
+import { config } from '../config';
+import { formatPrice } from '../cart/cart';
+import { useCart } from '../cart/CartProvider';
+import { useI18n } from '../i18n/I18nProvider';
 
 const ShopSection = ({ flavor, setFlavor }) => {
+    const { t, lang } = useI18n();
+    const { add, setIsOpen } = useCart();
+    const [announcement, setAnnouncement] = useState('');
+
+    const handleAdd = (key) => {
+        add(key);
+        setFlavor(key);
+        setAnnouncement(t('shop.added', { name: flavors[key].title[lang] }));
+    };
+
     return (
         <section id="shop" className="section" style={{ backgroundColor: '#0a0a0a' }}>
             <div className="container">
                 <Reveal width="100%">
                     <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                        <p style={{ color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>Boutique</p>
-                        <h2>Choisissez votre saveur</h2>
+                        <p className="eyebrow">{t('shop.eyebrow')}</p>
+                        <h2>{t('shop.title')}</h2>
                     </div>
                 </Reveal>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1.5rem' }}>
+                <div className="shop-grid">
                     {Object.entries(flavors).map(([key, item], i) => {
                         const isActive = flavor === key;
+                        const name = item.title[lang];
                         return (
                             <Reveal key={key} width="100%" delay={0.1 * i}>
-                                <button
-                                    type="button"
-                                    onClick={() => setFlavor(key)}
-                                    aria-pressed={isActive}
-                                    style={{
-                                        width: '100%',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                        gap: '1rem',
-                                        padding: '2rem 1rem',
-                                        background: 'rgba(255,255,255,0.03)',
-                                        border: `1px solid ${isActive ? item.color : 'var(--color-divider)'}`,
-                                        borderRadius: '16px',
-                                        color: 'inherit',
-                                        font: 'inherit',
-                                        cursor: 'pointer',
-                                        transition: 'border-color 0.3s ease, transform 0.3s ease',
-                                        transform: isActive ? 'translateY(-4px)' : 'none'
-                                    }}
-                                >
-                                    <img
-                                        src={item.canImg}
-                                        alt={`Canette Bavaria ${item.title}`}
-                                        loading="lazy"
-                                        style={{ height: '200px', width: 'auto', objectFit: 'contain', mixBlendMode: 'lighten' }}
-                                    />
-                                    <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.25rem', color: item.color }}>
-                                        {item.title}
-                                    </span>
-                                    <span style={{ fontSize: 'var(--fs-small)', opacity: 0.6, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                                        {isActive ? 'Sélectionnée' : 'Choisir'}
-                                    </span>
-                                </button>
+                                <article className={`shop-card${isActive ? ' is-active' : ''}`} style={{ '--flavor': item.color }}>
+                                    <button
+                                        type="button"
+                                        className="shop-card-select"
+                                        onClick={() => setFlavor(key)}
+                                        aria-pressed={isActive}
+                                        aria-label={t('flavorLabel', { name })}
+                                    >
+                                        <img
+                                            src={item.can.src}
+                                            srcSet={item.can.srcSet}
+                                            sizes="120px"
+                                            alt={t('canAlt', { name })}
+                                            loading="lazy"
+                                            width="100"
+                                            height="200"
+                                        />
+                                        <span className="shop-card-name">{name}</span>
+                                        {typeof config.prices[key] === 'number' && (
+                                            <span className="shop-card-price">{formatPrice(config.prices[key], config.currency, lang)}</span>
+                                        )}
+                                        <span className="shop-card-state">{isActive ? t('shop.selected') : t('shop.choose')}</span>
+                                    </button>
+                                    <button type="button" className="btn btn-primary shop-card-add" onClick={() => handleAdd(key)}>
+                                        <ShoppingBag size={16} aria-hidden="true" /> {t('shop.add')}
+                                    </button>
+                                </article>
                             </Reveal>
                         );
                     })}
                 </div>
 
+                <p className="sr-only" role="status" aria-live="polite">{announcement}</p>
+                {announcement && (
+                    <p className="shop-feedback">
+                        {announcement} ·{' '}
+                        <button type="button" className="link-btn" onClick={() => setIsOpen(true)}>{t('cart.title')}</button>
+                    </p>
+                )}
+
+                <StoreLocator />
+
                 <Reveal width="100%" delay={0.3}>
                     <p style={{ textAlign: 'center', marginTop: '3rem', opacity: 0.7 }}>
-                        Disponible chez nos revendeurs partenaires. <a href="#contact" style={{ color: flavors[flavor].color, fontWeight: 600 }}>Nous contacter</a>
+                        {t('shop.resellers')} <a href="#contact" style={{ color: flavors[flavor].color, fontWeight: 600 }}>{t('shop.contact')}</a>
                     </p>
                 </Reveal>
             </div>

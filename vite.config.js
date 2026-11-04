@@ -6,5 +6,10 @@ export default defineConfig({
     plugins: [react()],
     server: {
         host: true
-    }
+    },
+    test: {
+        environment: 'jsdom',
+        setupFiles: './src/test/setup.js',
+        include: ['src/**/*.test.{js,jsx}'],
+    },
 })

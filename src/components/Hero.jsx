@@ -1,13 +1,16 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { flavors } from '../data/flavors';
+import { useI18n } from '../i18n/I18nProvider';
 
 const Hero = ({ flavor, setFlavor }) => {
     const containerRef = useRef(null);
     const { scrollY } = useScroll();
 
 
+    const { t, lang } = useI18n();
     const currentFlavor = flavors[flavor];
+    const name = currentFlavor.title[lang];
 
     // Mouse Parallax Logic
     const x = useMotionValue(0);
@@ -49,10 +52,12 @@ const Hero = ({ flavor, setFlavor }) => {
     // Image Swap Logic: 
     // Static hidden when scroll > 50, Anim shown when scroll > 50
     const [showAnim, setShowAnim] = useState(false);
+    const [animRequested, setAnimRequested] = useState(false);
 
     useEffect(() => {
         const unsubscribe = scrollY.on("change", (latest) => {
             setShowAnim(latest > 50);
+            if (latest > 50) setAnimRequested(true);
         });
         return () => unsubscribe();
     }, [scrollY]);
@@ -103,14 +108,16 @@ const Hero = ({ flavor, setFlavor }) => {
                 {/* Static Image */}
                 <motion.img
                     key={`static-${flavor}`} // Force re-render on change
-                    src={currentFlavor.canImg}
+                    src={currentFlavor.can.src}
+                    srcSet={currentFlavor.can.srcSet}
+                    sizes="(max-width: 768px) 60vw, 35vw"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{
                         opacity: showAnim ? 0 : 1,
                         scale: 1
                     }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    alt={`Canette Bavaria ${currentFlavor.title}`}
+                    alt={t('canAlt', { name })}
                     loading="eager"
                     fetchpriority="high"
                     style={{
@@ -125,13 +132,18 @@ const Hero = ({ flavor, setFlavor }) => {
                     }}
                 />
 
-                {/* Animated WebP */}
-                <motion.img
+                {/* Scroll animation (video, loaded on first scroll) */}
+                {animRequested && (
+                <motion.video
                     key={`anim-${flavor}`}
-                    src={currentFlavor.heroAnimImg}
-                    alt=""
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    poster={currentFlavor.heroVideo.poster}
                     aria-hidden="true"
-                    loading="lazy"
+                    className="blend-video"
                     style={{
                         position: 'absolute', // Maintain absolute to stack images
                         height: 'auto',
@@ -144,7 +156,10 @@ const Hero = ({ flavor, setFlavor }) => {
                         filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.5))',
                         willChange: 'transform, opacity'
                     }}
-                />
+                >
+                    <source src={currentFlavor.heroVideo.mp4} type="video/mp4" />
+                </motion.video>
+                )}
             </motion.div>
 
             {/* Content Layers */}
@@ -168,7 +183,7 @@ const Hero = ({ flavor, setFlavor }) => {
                                 animate={{ color: currentFlavor.color }}
                                 transition={{ duration: 0.5 }}
                             >
-                                {currentFlavor.title}
+                                {name}
                             </motion.span> <br />
                             <motion.span
                                 key={flavor}
@@ -176,7 +191,7 @@ const Hero = ({ flavor, setFlavor }) => {
                                 animate={{ color: currentFlavor.color }}
                                 transition={{ duration: 0.5 }}
                             >
-                                {currentFlavor.subtitle}
+                                {t('flavorSubtitle')}
                             </motion.span>
                         </h1>
                         <p style={{
@@ -187,7 +202,7 @@ const Hero = ({ flavor, setFlavor }) => {
                             fontWeight: 600,
                             color: currentFlavor.color // Dynamic color
                         }}>
-                            Boisson pétillante
+                            {t('hero.tagline')}
                         </p>
                     </motion.div>
 
@@ -222,16 +237,16 @@ const Hero = ({ flavor, setFlavor }) => {
                                     fontSize: 'var(--fs-body)'
                                 }}
                             >
-                                {currentFlavor.description}
+                                {t(`descriptions.${flavor}`)}
                             </motion.p>
 
                             <div style={{ display: 'flex', gap: '1rem', pointerEvents: 'auto', marginBottom: '2.5rem', justifyContent: 'inherit' }}>
-                                <a href="#product" className="btn btn-secondary">Découvrir</a>
+                                <a href="#product" className="btn btn-secondary">{t('hero.discover')}</a>
                                 <a href="#shop" className="btn btn-primary" style={{
                                     backgroundColor: currentFlavor.color,
                                     borderColor: currentFlavor.color,
-                                    color: '#fff'
-                                }}>Acheter</a>
+                                    color: '#000'
+                                }}>{t('hero.buy')}</a>
                             </div>
 
                             {/* Flavor Switcher Controls */}
@@ -260,7 +275,7 @@ const Hero = ({ flavor, setFlavor }) => {
                                             scale: flavor === key ? 1.2 : 1,
                                             transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
                                         }}
-                                        aria-label={`Saveur ${flavors[key].title}`}
+                                        aria-label={t('flavorLabel', { name: flavors[key].title[lang] })}
                                         aria-pressed={flavor === key}
                                     />
                                 ))}
