@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -10,7 +10,8 @@ const Navbar = () => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
         };
-        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -18,7 +19,9 @@ const Navbar = () => {
         { name: 'Produit', href: '#product' },
         { name: 'Ingrédients', href: '#ingredients' },
         { name: 'Nutrition', href: '#nutrition' },
+        { name: 'Boutique', href: '#shop' },
         { name: 'Avis', href: '#reviews' },
+        { name: 'FAQ', href: '#faq' },
         { name: 'Contact', href: '#contact' },
     ];
 
@@ -43,14 +46,14 @@ const Navbar = () => {
                 backdropFilter: scrolled ? 'blur(20px)' : 'none',
             }}
         >
-            <div className="nav-logo" style={{
+            <a href="#home" className="nav-logo" aria-label="Bavaria - Accueil" style={{
                 fontFamily: "'Outfit', sans-serif",
                 fontWeight: 700,
                 fontSize: '1.5rem',
                 letterSpacing: '-0.02em'
             }}>
                 BAVARIA
-            </div>
+            </a>
 
             {/* Desktop Menu */}
             <ul className="nav-links desktop-only" style={{ display: 'flex', gap: '2rem' }}>
@@ -69,14 +72,23 @@ const Navbar = () => {
             </ul>
 
             {/* Mobile Toggle */}
-            <div className="mobile-toggle desktop-hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            <button
+                type="button"
+                className="mobile-toggle desktop-hidden"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label={mobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-menu"
+                style={{ position: 'relative', zIndex: 20 }}
+            >
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </div>
+            </button>
 
             {/* Mobile Menu */}
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
+                        id="mobile-menu"
                         initial={{ opacity: 0, x: '100%' }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: '100%' }}
@@ -121,16 +133,6 @@ const Navbar = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-
-            {/* Responsive Styles Injection */}
-            <style>{`
-                @media (max-width: 1024px) {
-                    .desktop-only { display: none !important; }
-                    .desktop-hidden { display: block !important; }
-                }
-                .desktop-hidden { display: none; }
-                .nav-link:hover { opacity: 1 !important; }
-            `}</style>
         </motion.nav>
     );
 };

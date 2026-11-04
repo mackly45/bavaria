@@ -41,10 +41,6 @@
     padding: 0;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     background-color: var(--color-background);
     color: var(--color-text-primary);
@@ -237,5 +233,88 @@ ul {
     .margin-inline-auto-mobile {
         margin-left: auto !important;
         margin-right: auto !important;
+    }
+}
+/* Navbar */
+.desktop-hidden {
+    display: none;
+}
+
+.nav-link:hover {
+    opacity: 1 !important;
+}
+
+.mobile-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 0;
+}
+
+@media (max-width: 1024px) {
+    .navbar .desktop-only {
+        display: none !important;
+    }
+
+    .navbar .desktop-hidden {
+        display: block !important;
+    }
+}
+
+/* Hero mobile layout */
+@media (max-width: 768px) {
+    #home .grid {
+        gap: 2rem !important;
+    }
+
+    /* Push description below the centered can */
+    #home .container > .grid > div:last-child {
+        margin-top: 40vh;
+    }
+}
+
+/* FAQ */
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Footer */
+.hover-link {
+    transition: all 0.3s ease;
+}
+
+.hover-link:hover {
+    opacity: 1 !important;
+    color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+/* Keyboard focus */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
