@@ -1,33 +1,27 @@
 import Reveal from './Reveal';
+import { useI18n } from '../i18n/I18nProvider';
 
 const ReviewsSection = () => {
+    const { t } = useI18n();
+    const reviews = t('reviews.items');
     return (
         <section id="reviews" className="section" style={{ backgroundColor: '#0a0a0a' }}>
             <div className="container">
                 <Reveal width="100%">
                     <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                        <p style={{ color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>Communauté</p>
-                        <h2>Ce que les gens disent</h2>
+                        <p style={{ color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>{t('reviews.eyebrow')}</p>
+                        <h2>{t('reviews.title')}</h2>
                     </div>
                 </Reveal>
 
                 <div className="grid">
-                    <div className="col-6 col-md-12">
-                        <Reveal delay={0.2}>
-                            <ReviewCard
-                                quote="Absolument rafraîchissant ! Le malt donne une profondeur que les sodas n'ont pas, et l'orange est parfaitement équilibrée."
-                                author="Sarah M."
-                            />
-                        </Reveal>
-                    </div>
-                    <div className="col-6 col-md-12">
-                        <Reveal delay={0.4}>
-                            <ReviewCard
-                                quote="Ma boisson préférée après une séance de sport. Hydratante sans être trop sucrée. J'adore le nouveau design !"
-                                author="David K."
-                            />
-                        </Reveal>
-                    </div>
+                    {reviews.map((review, i) => (
+                        <div key={review.author} className="col-6 col-md-12">
+                            <Reveal delay={0.2 * (i + 1)}>
+                                <ReviewCard quote={review.quote} author={review.author} />
+                            </Reveal>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>

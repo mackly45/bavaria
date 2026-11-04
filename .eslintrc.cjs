@@ -11,6 +11,10 @@ module.exports = {
     parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
     settings: { react: { version: '18.2' } },
     plugins: ['react-refresh'],
+    overrides: [
+        { files: ['*.config.js', 'scripts/**'], env: { node: true } },
+        { files: ['src/**/*Provider.jsx'], rules: { 'react-refresh/only-export-components': 'off' } },
+    ],
     rules: {
         'react/prop-types': 'off',
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],

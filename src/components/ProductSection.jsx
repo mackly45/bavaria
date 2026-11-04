@@ -2,12 +2,15 @@ import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import Reveal from './Reveal';
 import { flavors } from '../data/flavors';
+import { useI18n } from '../i18n/I18nProvider';
 
 const ProductSection = ({ flavor = 'orange' }) => {
     const cardRef = useRef(null);
 
 
+    const { t, lang } = useI18n();
     const currentProduct = flavors[flavor];
+    const name = currentProduct.title[lang];
 
     // 3D Tilt Logic
     const x = useMotionValue(0);
@@ -53,18 +56,18 @@ const ProductSection = ({ flavor = 'orange' }) => {
                                 marginBottom: '1rem',
                                 fontWeight: 600
                             }}>
-                                L’Expérience
+                                {t('product.eyebrow')}
                             </p>
                         </Reveal>
                         <Reveal delay={0.3}>
                             <h2 style={{ marginBottom: '1.5rem' }}>
-                                {currentProduct.title} <br />
-                                <span style={{ color: currentProduct.color }}>{currentProduct.subtitle}</span>
+                                {name} <br />
+                                <span style={{ color: currentProduct.color }}>{t('flavorSubtitle')}</span>
                             </h2>
                         </Reveal>
                         <Reveal delay={0.4}>
                             <p className="margin-inline-auto-mobile" style={{ opacity: 0.8, marginBottom: '2rem', maxWidth: '500px' }}>
-                                {currentProduct.description}
+                                {t(`descriptions.${flavor}`)}
                             </p>
                             <ul style={{
                                 color: 'var(--color-text-secondary)',
@@ -72,12 +75,12 @@ const ProductSection = ({ flavor = 'orange' }) => {
                                 display: 'inline-block',
                                 textAlign: 'left'
                             }}>
-                                <li style={{ marginBottom: '0.5rem' }}>• 0,0 % d’alcool</li>
-                                <li style={{ marginBottom: '0.5rem' }}>• Ingrédients naturels</li>
-                                <li>• Faible en calories</li>
+                                {t('product.bullets').map((bullet) => (
+                                    <li key={bullet} style={{ marginBottom: '0.5rem' }}>• {bullet}</li>
+                                ))}
                             </ul>
                             <div style={{ marginTop: '2.5rem' }}>
-                                <a href="#shop" className="btn btn-primary" style={{ backgroundColor: currentProduct.color, borderColor: currentProduct.color }}>Acheter maintenant</a>
+                                <a href="#shop" className="btn btn-primary" style={{ backgroundColor: currentProduct.color, borderColor: currentProduct.color }}>{t('product.buy')}</a>
                             </div>
                         </Reveal>
                     </div>
@@ -122,8 +125,10 @@ const ProductSection = ({ flavor = 'orange' }) => {
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ duration: 0.5 }}
-                                    src={currentProduct.canImg}
-                                    alt={`Canette Bavaria ${currentProduct.title}`}
+                                    src={currentProduct.can.src}
+                                    srcSet={currentProduct.can.srcSet}
+                                    sizes="(max-width: 768px) 50vw, 25vw"
+                                    alt={t('canAlt', { name })}
                                     loading="lazy"
                                     style={{
                                         height: 'clamp(250px, 40vh, 450px)',

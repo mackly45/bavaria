@@ -11,6 +11,9 @@ import ShopSection from './components/ShopSection';
 import ReviewsSection from './components/ReviewsSection';
 import FAQSection from './components/FAQSection';
 import ContactSection from './components/ContactSection';
+import CartDrawer from './components/CartDrawer';
+import LegalPage from './components/LegalPage';
+import { LEGAL_PATHS } from './data/routes';
 import { flavors, DEFAULT_FLAVOR } from './data/flavors';
 
 const MIN_LOADER_MS = 800;
@@ -25,14 +28,16 @@ const preloadImage = (src) =>
     });
 
 function App() {
-    const [isLoading, setIsLoading] = useState(true);
+    const legalPage = LEGAL_PATHS[window.location.pathname.replace(/\/$/, '')];
+    const [isLoading, setIsLoading] = useState(!legalPage);
     const [flavor, setFlavor] = useState(DEFAULT_FLAVOR);
 
     useEffect(() => {
+        if (legalPage) return undefined;
         let cancelled = false;
         const minDelay = new Promise((resolve) => setTimeout(resolve, MIN_LOADER_MS));
         const maxDelay = new Promise((resolve) => setTimeout(resolve, MAX_LOADER_MS));
-        const heroImage = preloadImage(flavors[DEFAULT_FLAVOR].canImg);
+        const heroImage = preloadImage(flavors[DEFAULT_FLAVOR].can.src);
 
         Promise.race([Promise.all([minDelay, heroImage]), maxDelay]).then(() => {
             if (!cancelled) setIsLoading(false);
@@ -41,7 +46,7 @@ function App() {
         return () => {
             cancelled = true;
         };
-    }, []);
+    }, [legalPage]);
 
     useEffect(() => {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -79,15 +84,18 @@ function App() {
             {!isLoading && (
                 <div className="app-content">
                     <Navbar />
+                    <CartDrawer />
+                    {legalPage ? <LegalPage page={legalPage} /> : (
                     <main>
                         <Hero flavor={flavor} setFlavor={setFlavor} />
                         <ProductSection flavor={flavor} />
                         <IngredientsSection flavor={flavor} />
-                        <NutritionSection />
+                        <NutritionSection flavor={flavor} />
                         <ShopSection flavor={flavor} setFlavor={setFlavor} />
                         <ReviewsSection />
                         <FAQSection />
                     </main>
+                    )}
                     <ContactSection />
                 </div>
             )}
